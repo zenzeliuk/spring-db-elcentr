@@ -1,0 +1,20 @@
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/spring-db-elcentr
+#    url: jdbc:h2:~/test-spring-db-elcentr
+#    username: "max"
+#    password: "1823"
+#    username: "postgres"
+#    password: "1823"
+#    hikari:
+#      connection-timeout: 180000
+#      maximum-pool-size: 100
+#      driver-class-name: "org.postgresql.Driver"
+#      driver-class-name: "org.h2.Driver"
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+spring:
+  profiles:
+    active: prod

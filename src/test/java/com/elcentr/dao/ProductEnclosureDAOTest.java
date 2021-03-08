@@ -48,10 +48,10 @@ class ProductEnclosureDAOTest {
         ProductEnclosure savedProductEnclosure = productEnclosureDAO.save(productEnclosure);
         assertNotNull(savedProductEnclosure);
 
-        List<ProductEnclosure> foundByProduct = productEnclosureDAO.findAllByProduct(savedProduct);
+        List<ProductEnclosure> allByProduct = productEnclosureDAO.findAllByProduct(savedProduct);
 
-        assertEquals(foundByProduct.size(), 1);
-        assertEquals(savedProductEnclosure, foundByProduct.get(0));
+        assertEquals(allByProduct.size(), 1);
+        assertEquals(savedProductEnclosure, allByProduct.get(0));
 
         productEnclosureDAO.delete(savedProductEnclosure);
         enclosureDAO.delete(savedEnclosure);
@@ -60,5 +60,38 @@ class ProductEnclosureDAOTest {
 
     @Test
     void findAllByEnclosure() {
+        Product product = Product.builder()
+                .name("test-name")
+                .code("test-code")
+                .amount(1)
+                .timeRegistration(new Date().getTime())
+                .build();
+        Product savedProduct = productDAO.save(product);
+        assertNotNull(savedProduct);
+
+        Enclosure enclosure = Enclosure.builder()
+                .name("test-name")
+                .build();
+        Enclosure savedEnclosure = enclosureDAO.save(enclosure);
+        assertNotNull(savedEnclosure);
+
+        ProductEnclosure productEnclosure = ProductEnclosure.builder()
+                .product(savedProduct)
+                .enclosure(savedEnclosure)
+                .amountEnclosure(1)
+                .build();
+        ProductEnclosure savedProductEnclosure = productEnclosureDAO.save(productEnclosure);
+        assertNotNull(savedProductEnclosure);
+
+        List<ProductEnclosure> allByEnclosure = productEnclosureDAO.findAllByEnclosure(savedEnclosure);
+
+        assertEquals(allByEnclosure.size(), 1);
+        assertEquals(savedProductEnclosure, allByEnclosure.get(0));
+
+        productEnclosureDAO.delete(savedProductEnclosure);
+        enclosureDAO.delete(savedEnclosure);
+        productDAO.delete(savedProduct);
+
+
     }
 }

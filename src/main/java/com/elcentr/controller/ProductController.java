@@ -3,13 +3,14 @@ package com.elcentr.controller;
 import com.elcentr.model.Product;
 import com.elcentr.service.ProductService;
 import lombok.AllArgsConstructor;
-import lombok.Generated;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("product")
 @AllArgsConstructor
@@ -53,14 +54,18 @@ public class ProductController {
     public ResponseEntity<List<Product>> findAllByFilter(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String code,
-            @RequestParam(required = false) String nominalCurrent,
-            @RequestParam(required = false) String ip) {
+            @RequestParam(required = false) Integer nominalCurrent,
+            @RequestParam(required = false) Integer ip) {
         return new ResponseEntity<>(productService.findAllByFilter(name, code, nominalCurrent, ip), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable Integer id) {
-        productService.deleteById(id);
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
+        try {
+            productService.deleteById(id);
+        } catch (Exception e) {
+            log.warn("Delete method was processed with exception for user with id {}", id);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

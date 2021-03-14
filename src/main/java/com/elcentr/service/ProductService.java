@@ -16,5 +16,6 @@ public interface ProductService {
 
     void deleteById(Integer id);
 
-    List<Product> findAllByFilter(String name, String code, String nominalCurrent, String indexProtectionProduct);
+    List<Product> findAllByFilter(String name, String code, Integer nominalCurrent, Integer indexProtectionProduct);
+
 }

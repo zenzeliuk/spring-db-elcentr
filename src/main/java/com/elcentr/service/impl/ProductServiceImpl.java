@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAllByFilter(String name, String code, Integer nominalCurrent, Integer indexProtectionProduct) {
+    public List<Product> findAllByFilter(String name, String code, Integer nominalCurrent, Integer indexProtection) {
         List<Product> listByFilter = findAll();
 
         if (name != null) {
@@ -91,9 +91,9 @@ public class ProductServiceImpl implements ProductService {
                     .collect(Collectors.toList());
         }
 
-        if (indexProtectionProduct != null) {
+        if (indexProtection != null) {
             listByFilter = listByFilter.stream()
-                    .filter(l -> l.getIndexProtectionProduct().equals(indexProtectionProduct))
+                    .filter(l -> l.getIndexProtection().equals(indexProtection))
                     .collect(Collectors.toList());
         }
 

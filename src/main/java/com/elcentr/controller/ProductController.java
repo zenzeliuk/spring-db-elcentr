@@ -55,8 +55,8 @@ public class ProductController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String code,
             @RequestParam(required = false) Integer nominalCurrent,
-            @RequestParam(required = false) Integer ip) {
-        return new ResponseEntity<>(productService.findAllByFilter(name, code, nominalCurrent, ip), HttpStatus.OK);
+            @RequestParam(required = false) Integer indexProtection) {
+        return new ResponseEntity<>(productService.findAllByFilter(name, code, nominalCurrent, indexProtection), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,15 +1,14 @@
 package com.elcentr.service.impl;
 
 import com.elcentr.dao.CustomerDAO;
-import com.elcentr.dao.ProductDAO;
 import com.elcentr.model.Customer;
 import com.elcentr.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Service
@@ -20,23 +19,29 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer create(Customer customer) {
-        if (nonNull(customer.getId())) {
-            throw new RuntimeException("Creation is failed!");
-        }
-        if (!findAll().contains(customer)) {
-            return Optional.of(customerDAO.save(customer));
-        }
-        return null;
+        if (isNull(customer.getId()) &&
+                nonNull(customer.getName()) &&
+                !findAll().contains(customer))
+            return customerDAO.save(customer);
+
+        throw new RuntimeException("Customer can not be created.");
     }
 
     @Override
     public Customer update(Customer customer) {
-        return null;
+        if (nonNull(customer.getId()) &&
+                nonNull(customer.getName()) &&
+                !findAll().contains(customer) //TODO: test method
+        ) {
+            return customerDAO.save(customer);
+        }
+        throw new RuntimeException("Customer can not be updated.");
     }
 
     @Override
     public Customer findOneById(Integer id) {
-        return null;
+        return customerDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer was not found"));
     }
 
     @Override

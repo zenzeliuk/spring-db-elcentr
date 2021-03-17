@@ -64,7 +64,7 @@ public class ProductController {
         try {
             productService.deleteById(id);
         } catch (Exception e) {
-            log.warn("Delete method was processed with exception for user with id {}", id);
+            log.warn("Delete method was processed with exception for product with id {}", id);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

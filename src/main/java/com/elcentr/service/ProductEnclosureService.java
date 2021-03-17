@@ -1,5 +1,6 @@
 package com.elcentr.service;
 
+import com.elcentr.model.Enclosure;
 import com.elcentr.model.Product;
 import com.elcentr.model.ProductEnclosure;
 
@@ -17,8 +18,8 @@ public interface ProductEnclosureService {
 
     void deleteById(Integer id);
 
-    List<ProductEnclosure> findAllByProduct(Product product);
+    List<ProductEnclosure> findAllByProductId(Integer productId);
 
-//    List<ProductEnclosure> findAllByEnclosureList(List<Enclosure> enclosure);
+    List<ProductEnclosure> findAllByEnclosureId(Integer enclosureId);
 
 }

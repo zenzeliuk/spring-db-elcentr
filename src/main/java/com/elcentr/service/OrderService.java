@@ -1,21 +1,27 @@
-package com.elcentr.dao;
+package com.elcentr.service;
 
 import com.elcentr.model.Customer;
 import com.elcentr.model.Order;
 import com.elcentr.model.Product;
 import com.elcentr.model.ResidentialComplex;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface OrderDAO extends JpaRepository<Order, Integer> {
+public interface OrderService {
+
+    Order create(Order order);
+
+    Order update(Order order);
+
+    Order findOneById(Integer id);
+
+    List<Order> findAll();
+
+    void deleteById(Integer id);
 
     Order findByProductId(Integer productId);
 
     List<Order> findAllByCustomerId(Integer customerId);
 
     List<Order> findAllByResidentialComplexId(Integer residentialComplexId);
-
 }

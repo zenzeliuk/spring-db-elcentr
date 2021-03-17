@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface ProductEnclosureDAO extends JpaRepository<ProductEnclosure, Integer> {
 
-    List<ProductEnclosure> findAllByProduct(Product product);
+    List<ProductEnclosure> findAllByProductId(Integer productId);
 
-    List<ProductEnclosure> findAllByEnclosure(Enclosure enclosure);
+    List<ProductEnclosure> findAllByEnclosureId(Integer enclosureId);
 
 }

@@ -6,6 +6,7 @@ import com.elcentr.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -31,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer update(Customer customer) {
         if (nonNull(customer.getId()) &&
                 nonNull(customer.getName()) &&
-                !findAll().contains(customer) //TODO: test method
+                !findAll().contains(customer)
         ) {
             return customerDAO.save(customer);
         }
@@ -46,16 +47,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return customerDAO.findAll();
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        customerDAO.deleteById(id);
     }
 
     @Override
     public List<Customer> findAllByFilter(String name, String notes) {
-        return null;
-    }
+        return new ArrayList<>();
+    } //TODO: create method and test;
 }

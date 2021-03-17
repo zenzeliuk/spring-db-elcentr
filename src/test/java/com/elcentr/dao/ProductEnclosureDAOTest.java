@@ -22,7 +22,7 @@ class ProductEnclosureDAOTest {
     @Autowired
     private EnclosureDAO enclosureDAO;
 
-
+/*
     @Test
     void findAllByProduct() {
         Product product = Product.builder()
@@ -91,7 +91,7 @@ class ProductEnclosureDAOTest {
         productEnclosureDAO.delete(savedProductEnclosure);
         enclosureDAO.delete(savedEnclosure);
         productDAO.delete(savedProduct);
-
-
     }
+    */
+
 }

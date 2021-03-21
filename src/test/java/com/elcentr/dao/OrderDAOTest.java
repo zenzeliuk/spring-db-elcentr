@@ -19,29 +19,29 @@ public class OrderDAOTest {
     @Autowired
     private ProductDAO productDAO;
 
-    @Test
-    void findByProduct() {
-        Product product = Product.builder()
-                .name("test-name")
-                .code("test-code")
-                .amount(1)
-                .timeRegistration(new Date().getTime())
-                .build();
-
-        Product savedProduct = productDAO.save(product);
-
-        Order order = Order.builder()
-                .product(savedProduct)
-                .build();
-
-        Order savedOrder = orderDAO.save(order);
-
-        Order orderByProduct = orderDAO.findByProduct(savedProduct);
-
-        assertEquals(savedProduct, orderByProduct.getProduct());
-
-        orderDAO.delete(savedOrder);
-        productDAO.delete(savedProduct);
-
-    }
+//    @Test
+//    void findByProduct() {
+//        Product product = Product.builder()
+//                .name("test-name")
+//                .code("test-code")
+//                .amount(1)
+//                .timeRegistration(new Date().getTime())
+//                .build();
+//
+//        Product savedProduct = productDAO.save(product);
+//
+//        Order order = Order.builder()
+//                .product(savedProduct)
+//                .build();
+//
+//        Order savedOrder = orderDAO.save(order);
+//
+//        Order orderByProduct = orderDAO.findByProduct(savedProduct);
+//
+//        assertEquals(savedProduct, orderByProduct.getProduct());
+//
+//        orderDAO.delete(savedOrder);
+//        productDAO.delete(savedProduct);
+//
+//    }
 }

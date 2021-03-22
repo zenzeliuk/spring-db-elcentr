@@ -3,6 +3,8 @@ package com.elcentr.dao;
 import com.elcentr.model.Enclosure;
 import com.elcentr.model.Product;
 import com.elcentr.model.ProductEnclosure;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,76 +24,91 @@ class ProductEnclosureDAOTest {
     @Autowired
     private EnclosureDAO enclosureDAO;
 
-/*
-    @Test
-    void findAllByProduct() {
-        Product product = Product.builder()
+    private Product product;
+    private Enclosure enclosure;
+
+    @BeforeEach
+    void init(){
+        product = Product.builder()
                 .name("test-name")
                 .code("test-code")
                 .amount(1)
                 .timeRegistration(new Date().getTime())
                 .build();
-        Product savedProduct = productDAO.save(product);
-        assertNotNull(savedProduct);
 
-        Enclosure enclosure = Enclosure.builder()
+        enclosure = Enclosure.builder()
                 .name("test-name")
                 .build();
-        Enclosure savedEnclosure = enclosureDAO.save(enclosure);
-        assertNotNull(savedEnclosure);
+    }
+    @AfterEach
+    void deleteAll(){
+        productEnclosureDAO.deleteAll();
+        productDAO.deleteAll();
+        enclosureDAO.deleteAll();
+    }
 
+    @Test
+    void CRUDProductEnclosure(){
+        Product savedProduct = productDAO.save(product);
+        Enclosure savedEnclosure = enclosureDAO.save(enclosure);
         ProductEnclosure productEnclosure = ProductEnclosure.builder()
                 .product(savedProduct)
                 .enclosure(savedEnclosure)
                 .amountEnclosure(1)
                 .build();
         ProductEnclosure savedProductEnclosure = productEnclosureDAO.save(productEnclosure);
-        assertNotNull(savedProductEnclosure);
 
-        List<ProductEnclosure> allByProduct = productEnclosureDAO.findAllByProduct(savedProduct);
+        assertNotNull(savedProduct.getId());
+        assertNotNull(savedEnclosure.getId());
+        assertNotNull(savedProductEnclosure.getId());
 
-        assertEquals(allByProduct.size(), 1);
-        assertEquals(savedProductEnclosure, allByProduct.get(0));
-
+        assertEquals(savedProductEnclosure, productEnclosureDAO.findById(savedProductEnclosure.getId()).get());
+        List<ProductEnclosure> productEnclosureList = productEnclosureDAO.findAll();
+        assertTrue(productEnclosureList.contains(savedProductEnclosure));
         productEnclosureDAO.delete(savedProductEnclosure);
-        enclosureDAO.delete(savedEnclosure);
-        productDAO.delete(savedProduct);
+        productEnclosureList = productEnclosureDAO.findAll();
+        assertFalse(productEnclosureList.contains(savedProductEnclosure));
     }
 
     @Test
-    void findAllByEnclosure() {
-        Product product = Product.builder()
-                .name("test-name")
-                .code("test-code")
-                .amount(1)
-                .timeRegistration(new Date().getTime())
-                .build();
+    void findAllByProductId(){
         Product savedProduct = productDAO.save(product);
-        assertNotNull(savedProduct);
-
-        Enclosure enclosure = Enclosure.builder()
-                .name("test-name")
-                .build();
         Enclosure savedEnclosure = enclosureDAO.save(enclosure);
-        assertNotNull(savedEnclosure);
-
         ProductEnclosure productEnclosure = ProductEnclosure.builder()
                 .product(savedProduct)
                 .enclosure(savedEnclosure)
                 .amountEnclosure(1)
                 .build();
+
+        assertNotNull(savedProduct.getId());
+        List<ProductEnclosure> productEnclosureListByProductId = productEnclosureDAO.findAllByProductId(savedProduct.getId());
+        assertTrue(productEnclosureListByProductId.isEmpty());
+
         ProductEnclosure savedProductEnclosure = productEnclosureDAO.save(productEnclosure);
-        assertNotNull(savedProductEnclosure);
 
-        List<ProductEnclosure> allByEnclosure = productEnclosureDAO.findAllByEnclosure(savedEnclosure);
-
-        assertEquals(allByEnclosure.size(), 1);
-        assertEquals(savedProductEnclosure, allByEnclosure.get(0));
-
-        productEnclosureDAO.delete(savedProductEnclosure);
-        enclosureDAO.delete(savedEnclosure);
-        productDAO.delete(savedProduct);
+        productEnclosureListByProductId = productEnclosureDAO.findAllByProductId(savedProduct.getId());
+        assertFalse(productEnclosureListByProductId.isEmpty());
+        assertEquals(savedProductEnclosure, productEnclosureListByProductId.get(0));
     }
-    */
 
+    @Test
+    void findAllByEnclosureId(){
+        Product savedProduct = productDAO.save(product);
+        Enclosure savedEnclosure = enclosureDAO.save(enclosure);
+        ProductEnclosure productEnclosure = ProductEnclosure.builder()
+                .product(savedProduct)
+                .enclosure(savedEnclosure)
+                .amountEnclosure(1)
+                .build();
+
+        assertNotNull(savedEnclosure.getId());
+        List<ProductEnclosure> productEnclosureListByEnclosureId = productEnclosureDAO.findAllByEnclosureId(savedEnclosure.getId());
+        assertTrue(productEnclosureListByEnclosureId.isEmpty());
+
+        ProductEnclosure savedProductEnclosure = productEnclosureDAO.save(productEnclosure);
+
+        productEnclosureListByEnclosureId = productEnclosureDAO.findAllByEnclosureId(savedEnclosure.getId());
+        assertFalse(productEnclosureListByEnclosureId.isEmpty());
+        assertEquals(savedProductEnclosure, productEnclosureListByEnclosureId.get(0));
+    }
 }

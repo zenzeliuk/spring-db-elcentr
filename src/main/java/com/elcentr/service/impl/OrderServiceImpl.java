@@ -20,40 +20,40 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order create(Order order) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public Order update(Order order) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public Order findOneById(Integer id) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<Order> findAll() {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public void deleteById(Integer id) {
 
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public Order findByProductId(Integer productId) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<Order> findAllByCustomerId(Integer customerId) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<Order> findAllByResidentialComplexId(Integer residentialComplexId) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 }

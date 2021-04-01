@@ -17,35 +17,35 @@ public class ProductEnclosureServiceImpl implements ProductEnclosureService {
     @Override
     public ProductEnclosure create(ProductEnclosure productEnclosure) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public ProductEnclosure update(ProductEnclosure productEnclosure) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public ProductEnclosure findOneById(Integer id) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<ProductEnclosure> findAll() {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public void deleteById(Integer id) {
 
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<ProductEnclosure> findAllByProductId(Integer productId) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 
     @Override
     public List<ProductEnclosure> findAllByEnclosureId(Integer enclosureId) {
         return null;
-    }    //TODO: create method and test;
+    }    //TODO
 }

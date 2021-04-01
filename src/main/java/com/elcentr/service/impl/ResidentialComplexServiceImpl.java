@@ -58,5 +58,5 @@ public class ResidentialComplexServiceImpl implements ResidentialComplexService 
     @Override
     public List<ResidentialComplex> findAllByFilter(String name, String address) {
         return new ArrayList<>();
-    } //TODO: create method and test;
+    } //TODO
 }

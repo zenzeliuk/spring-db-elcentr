@@ -58,5 +58,5 @@ public class EnclosureServiceImpl implements EnclosureService {
     @Override
     public List<Enclosure> findAllByFilter(String manufacturer, String code, String category, String name, Integer height, Integer width, Integer depth) {
         return new ArrayList<>();
-    } //TODO: create method and test;
+    } //TODO
 }

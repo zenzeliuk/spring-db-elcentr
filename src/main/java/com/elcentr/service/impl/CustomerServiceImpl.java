@@ -58,5 +58,5 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAllByFilter(String name, String notes) {
         return new ArrayList<>();
-    } //TODO: create method and test;
+    } //TODO
 }

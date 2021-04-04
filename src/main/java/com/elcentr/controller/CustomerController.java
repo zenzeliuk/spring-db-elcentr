@@ -18,7 +18,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<Customer> create(@RequestBody Customer customer) {
         try {
             return new ResponseEntity<>(customerService.create(customer), HttpStatus.OK);
@@ -27,7 +27,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<Customer> update(@RequestBody Customer customer) {
         try {
             return new ResponseEntity<>(customerService.update(customer), HttpStatus.OK);
@@ -36,7 +36,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Customer> findById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(customerService.findOneById(id), HttpStatus.OK);
@@ -57,7 +57,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.findAllByFilter(name, notes), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         try {
             customerService.deleteById(id);

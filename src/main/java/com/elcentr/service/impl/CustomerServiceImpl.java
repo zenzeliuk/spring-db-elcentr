@@ -31,8 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer update(Customer customer) {
         if (nonNull(customer.getId()) &&
-                nonNull(customer.getName()) &&
-                !findAll().contains(customer)
+                nonNull(customer.getName())
+//                &&
+//                !findAll().contains(customer)
         ) {
             return customerDAO.save(customer);
         }

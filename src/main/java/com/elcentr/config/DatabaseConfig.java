@@ -24,8 +24,7 @@ public class DatabaseConfig {
         hikariConfig.setConnectionTimeout(180000);
         hikariConfig.setMaximumPoolSize(100);
         hikariConfig.setDriverClassName("org.postgresql.Driver");
-        HikariDataSource hikariDataSource = new HikariDataSource(hikariConfig);
-        return hikariDataSource;
+        return new HikariDataSource(hikariConfig);
     }
 
     @Bean
@@ -39,8 +38,7 @@ public class DatabaseConfig {
         hikariConfig.setConnectionTimeout(180000);
         hikariConfig.setMaximumPoolSize(100);
         hikariConfig.setDriverClassName("org.h2.Driver");
-        HikariDataSource hikariDataSource = new HikariDataSource(hikariConfig);
-        return hikariDataSource;
+        return new HikariDataSource(hikariConfig);
     }
 
 }

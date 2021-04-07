@@ -7,9 +7,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@ToString(callSuper = true)
 @Data
 @Builder
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
@@ -18,10 +18,8 @@ public class Order extends BaseEntity {
 
     @ManyToOne(targetEntity = Product.class)
     private Product product;
-
     @OneToOne(targetEntity = Customer.class)
     private Customer customer;
-
     @OneToOne(targetEntity = ResidentialComplex.class)
     private ResidentialComplex residentialComplex;
 

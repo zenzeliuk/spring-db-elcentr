@@ -1,7 +1,5 @@
 package com.elcentr.dao;
 
-import com.elcentr.model.Enclosure;
-import com.elcentr.model.Product;
 import com.elcentr.model.ProductEnclosure;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

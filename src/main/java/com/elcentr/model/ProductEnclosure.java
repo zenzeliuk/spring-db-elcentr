@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@ToString(callSuper = true)
 @Data
 @Builder
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "product_enclosures")
@@ -18,10 +18,8 @@ public class ProductEnclosure extends BaseEntity {
 
     @ManyToOne(targetEntity = Product.class)
     private Product product;
-
     @ManyToOne(targetEntity = Enclosure.class)
     private Enclosure enclosure;
-
     @Column(name = "amount_enclosure", nullable = false)
     private Integer amountEnclosure;
 

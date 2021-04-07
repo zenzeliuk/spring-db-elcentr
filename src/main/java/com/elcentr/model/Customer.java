@@ -5,9 +5,9 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@ToString(callSuper = true)
 @Data
 @Builder
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customers")
@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Customer extends BaseEntity {
 
     private String name;
-
     private String notes;
 
     public Customer(Integer id, String name, String notes) {
